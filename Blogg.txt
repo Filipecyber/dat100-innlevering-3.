@@ -1,0 +1,89 @@
+package no.hvl.dat100.oppgave3;
+
+import no.hvl.dat100.oppgave1.Innlegg;
+
+public class Blogg {
+
+    // a) Objektvariabler
+    private Innlegg[] innleggtabell;
+    private int nesteledig;
+
+    // b) Standardkonstruktør: startstørrelse 20
+    public Blogg() {
+        innleggtabell = new Innlegg[20];
+        nesteledig = 0;
+    }
+
+    // b) Konstruktør med valgfri startstørrelse
+    public Blogg(int lengde) {
+        innleggtabell = new Innlegg[lengde];
+        nesteledig = 0;
+    }
+
+    // c) Antall innlegg lagret
+    public int getAntall() {
+        return nesteledig;
+    }
+    
+    // d) Returnerer pekeren til tabellen
+    public Innlegg[] getSamling() {
+        return innleggtabell;
+    }
+    
+    // e) Finn indeks til innlegg med samme id (bruker erLik)
+    public int finnInnlegg(Innlegg innlegg) {
+        for (int i = 0; i < nesteledig; i++) {
+            if (innleggtabell[i].erLik(innlegg)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    // f) Finnes innlegg med samme id?
+    public boolean finnes(Innlegg innlegg) {
+        return finnInnlegg(innlegg) != -1;
+    }
+
+    // g) Har vi ledig plass?
+    public boolean ledigPlass() {
+        return nesteledig < innleggtabell.length;
+    }
+    
+    // h) Legg til innlegg hvis unik id og ledig plass
+    public boolean leggTil(Innlegg innlegg) {
+        if (!finnes(innlegg) && ledigPlass()) {
+            innleggtabell[nesteledig] = innlegg;
+            nesteledig++;
+            return true;
+        }
+        return false;
+    }
+    
+    // i) Strengrepresentasjon: antall + alle innlegg
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(nesteledig).append("\n");
+        for (int i = 0; i < nesteledig; i++) {
+            sb.append(innleggtabell[i].toString());
+        }
+        return sb.toString();
+    }
+
+    // Valgfrie oppgaver (ikke implementert her)
+    public void utvid() {
+        throw new UnsupportedOperationException("Valgfri oppgave ikke implementert");
+    }
+    
+    public boolean leggTilUtvid(Innlegg innlegg) {
+        throw new UnsupportedOperationException("Valgfri oppgave ikke implementert");
+    }
+    
+    public boolean slett(Innlegg innlegg) {
+        throw new UnsupportedOperationException("Valgfri oppgave ikke implementert");
+    }
+    
+    public int[] search(String keyword) {
+        throw new UnsupportedOperationException("Valgfri oppgave ikke implementert");
+    }
+}

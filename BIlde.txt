@@ -1,0 +1,43 @@
+package no.hvl.dat100.oppgave2;
+
+public class Bilde extends Tekst {
+
+    // Objektvariabel for URL
+    private String url;
+    
+    // Konstruktør uten likes (likes settes til 0 via super)
+    public Bilde(int id, String bruker, String dato, String tekst, String url) {
+        super(id, bruker, dato, tekst);
+        this.url = url;
+    }
+
+    // Konstruktør med likes
+    public Bilde(int id, String bruker, String dato, int likes, String tekst, String url) {
+        super(id, bruker, dato, likes, tekst);
+        this.url = url;
+    }
+    
+    // Getter og setter for URL
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    // toString-metoden
+    @Override
+    public String toString() {
+        return "BILDE\n" + getId() + "\n" + getBruker() + "\n" + getDato() + "\n" + getLikes() + "\n" + getTekst() + "\n" + url + "\n";
+    }
+    
+    // Valgfri oppgave 6
+    public String toHTML() {
+        return "<h2>" + getBruker() + "</h2>\n" +
+               "<p>" + getDato() + "</p>\n" +
+               "<p>" + getTekst() + "</p>\n" +
+               "<img src=\"" + url + "\" alt=\"Bilde\" />\n" +
+               "<p>Likes: " + getLikes() + "</p>\n";
+    }
+}
